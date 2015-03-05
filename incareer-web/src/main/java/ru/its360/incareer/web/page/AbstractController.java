@@ -13,6 +13,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
+import org.ocpsoft.rewrite.annotation.Parameter;
 import ru.its360.incareer.model.news.CRUDService;
 
 /**
@@ -22,6 +23,8 @@ import ru.its360.incareer.model.news.CRUDService;
 public abstract class AbstractController<E> implements Serializable {
     
     private E current;
+    
+    @Parameter
     private String id;
     
     protected abstract CRUDService<E> getService();

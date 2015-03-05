@@ -5,11 +5,11 @@
  */
 package ru.its360.incareer.web.page;
 
-import com.ocpsoft.pretty.faces.annotation.URLAction;
-import com.ocpsoft.pretty.faces.annotation.URLMapping;
 import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
+import org.ocpsoft.rewrite.annotation.Join;
+import org.ocpsoft.rewrite.annotation.RequestAction;
 
 /**
  *
@@ -17,7 +17,8 @@ import javax.inject.Named;
  */
 @Named("feedback")
 @RequestScoped
-@URLMapping(id = "feedback", pattern = "/feedback", viewId = "/pages/feedback.xhtml")
+//@URLMapping(id = "feedback", pattern = "/feedback", viewId = "/pages/feedback.xhtml")
+@Join(path = "/feedback", to="/pages/feedback.xhtml")
 public class FeedbackController implements Serializable {
     
     private String status = "none";
@@ -26,7 +27,8 @@ public class FeedbackController implements Serializable {
         return status;
     }
     
-    @URLAction
+//    @URLAction
+    @RequestAction
     public void init() {
         status = "init";
     }
