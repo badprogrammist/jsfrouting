@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/layouts/application.xhtml"
+                xmlns:news="http://xmlns.jcp.org/jsf/composite/news"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="title">
+        News
+    </ui:define>
+    <ui:define name="content">
+        <h3>News</h3>
+        <h:form>
+            <h:link value="Добавить новость" outcome="#{news.create()}"/>
+            <news:list newsItems="#{news.all}">
+                <f:facet name="itemFacet">
+                    <h:link outcome="#{news.edit()}" value="Редактировать">
+                        <f:param name="id" value="#{newsItem.uuid}"/>
+                    </h:link>
+                    <h:link outcome="#{news.view()}" value="Просмотреть">
+                        <f:param name="id" value="#{newsItem.uuid}"/>
+                    </h:link>
+                </f:facet>
+            </news:list>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
+
