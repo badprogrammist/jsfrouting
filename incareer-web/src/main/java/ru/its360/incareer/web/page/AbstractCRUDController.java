@@ -15,7 +15,7 @@ import java.util.UUID;
  */
 public abstract class AbstractCRUDController<E> extends AbstractController<E> {
 
-    protected abstract String getUniqueRouteKey();
+    protected abstract String getURLKey();
     
     public void prepareCreate() {
         setCurrent(getService().createEmptyEntity());
@@ -34,20 +34,24 @@ public abstract class AbstractCRUDController<E> extends AbstractController<E> {
         endConversation();
     }
     
-    public String create() {
-        return Navigation.getURL("new_"+getUniqueRouteKey());
+    public String gotoCreate() {
+        return Navigation.getURL("new_"+getURLKey());
     }
     
-    public String list() {
-        return Navigation.getURL(getUniqueRouteKey());
+    public String gotoRoot() {
+        return Navigation.getURL(getURLKey());
     }
     
-    public String view() {
-        return Navigation.getURL("view_"+getUniqueRouteKey());
+    public String gotoList() {
+        return Navigation.getURL("list_"+getURLKey());
     }
     
-    public String edit() {
-        return Navigation.getURL("edit_"+getUniqueRouteKey());
+    public String gotoView() {
+        return Navigation.getURL("view_"+getURLKey());
+    }
+    
+    public String gotoEdit() {
+        return Navigation.getURL("edit_"+getURLKey());
     }
     
     public List<E> getAll() {
@@ -58,7 +62,7 @@ public abstract class AbstractCRUDController<E> extends AbstractController<E> {
         if (getCurrent() != null) {
             getService().save(getCurrent());
             endConversation();
-            return list();
+            return gotoList();
         }
         return "";
     }

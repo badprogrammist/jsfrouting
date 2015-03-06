@@ -13,7 +13,9 @@
     </h:head>
     <h:body>
         <ui:insert name="header">
-            <p>Default application header content</p>
+            <h:form>
+                <h:link outcome="#{news.gotoRoot()}" value="Новости"/>
+            </h:form>
         </ui:insert>
         <hr/>
         <ui:insert name="content">

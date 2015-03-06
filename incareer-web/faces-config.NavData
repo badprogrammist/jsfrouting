@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
-    <Scope Scope="Project"/>
-    <Scope Scope="All Faces Configurations"/>
+    <Scope Scope="Project">
+        <Node id="pages/news/view.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="resources/news/form.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="layouts/application.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="pages/news/create.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="pages/feedback.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="pages/news/list.xhtml" x="1028" y="149" zoom="true"/>
+        <Node id="resources/news/list.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="pages/index.xhtml" x="417" y="299" zoom="true"/>
+        <Node id="pages/news/edit.xhtml" x="150" y="300" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations">
+        <Node id="pages/news/list.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="pages/index.xhtml" x="650" y="150" zoom="true"/>
+    </Scope>
 </Scene>

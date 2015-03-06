@@ -11,13 +11,13 @@
     <ui:define name="content">
         <h3>News</h3>
         <h:form>
-            <h:link value="Добавить новость" outcome="#{news.create()}"/>
+            <h:link value="Добавить новость" outcome="#{news.gotoCreate()}"/>
             <news:list newsItems="#{news.all}">
                 <f:facet name="itemFacet">
-                    <h:link outcome="#{news.edit()}" value="Редактировать">
+                    <h:link outcome="#{news.gotoEdit()}" value="Редактировать">
                         <f:param name="id" value="#{newsItem.uuid}"/>
                     </h:link>
-                    <h:link outcome="#{news.view()}" value="Просмотреть">
+                    <h:link outcome="#{news.gotoView()}" value="Просмотреть">
                         <f:param name="id" value="#{newsItem.uuid}"/>
                     </h:link>
                 </f:facet>

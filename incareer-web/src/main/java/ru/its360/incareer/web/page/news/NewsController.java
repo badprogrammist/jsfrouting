@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ru.its360.incareer.web.page;
+package ru.its360.incareer.web.page.news;
 
 import com.ocpsoft.pretty.faces.annotation.URLAction;
 import com.ocpsoft.pretty.faces.annotation.URLMapping;
@@ -15,6 +15,7 @@ import javax.inject.Named;
 import ru.its360.incareer.model.news.CRUDService;
 import ru.its360.incareer.model.news.News;
 import ru.its360.incareer.model.news.NewsService;
+import ru.its360.incareer.web.page.AbstractCRUDController;
 
 /**
  *
@@ -23,7 +24,7 @@ import ru.its360.incareer.model.news.NewsService;
 @Named("news")
 @ConversationScoped
 @URLMappings(mappings = {
-    @URLMapping(id = "news", pattern = "/news", viewId = "/pages/news/news.xhtml"),
+    @URLMapping(id = "news", pattern = "/news", viewId = "/pages/news/list.xhtml"),
     @URLMapping(id = "new_news",parentId = "news", pattern = "/new", viewId = "/pages/news/create.xhtml"),
     @URLMapping(
             id = "edit_news",
@@ -55,7 +56,7 @@ public class NewsController extends AbstractCRUDController<News> {
     }
 
     @Override
-    protected String getUniqueRouteKey() {
+    protected String getURLKey() {
         return "news";
     }
 
