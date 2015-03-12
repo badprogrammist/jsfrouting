@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!-- was: <?xml version="1.0" encoding="UTF-8"?> -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    
+    <context:annotation-config/>
+    <context:component-scan base-package="ru.its360"></context:component-scan>
+    
+    <!-- 1. initialization of all orchestra modules (required for core15 module) -->
+    <import resource="classpath*:/META-INF/spring-orchestra-init.xml" />
+    
+    <!-- 2. the conversation scopes -->
+    <bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+      <property name="scopes">
+        <map>
+          <entry key="conversation.manual">
+            <bean class="org.apache.myfaces.orchestra.conversation.spring.SpringConversationScope">
+              <property name="timeout" value="30" />
+<!--              <property name="advices">
+                <list>
+                  <ref bean="persistentContextConversationInterceptor"/>
+                </list>
+              </property>-->
+            </bean>
+          </entry>
+
+          <entry key="conversation.access">
+            <bean class="org.apache.myfaces.orchestra.conversation.spring.SpringConversationScope">
+              <property name="timeout" value="30" />
+<!--              <property name="advices">
+                <list>
+                  <ref bean="persistentContextConversationInterceptor"/>
+                </list>
+              </property>-->
+              <property name="lifetime" value="access"/>
+            </bean>
+          </entry>
+        </map>
+      </property>
+    </bean>
+    
+    
+    <!--bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+          p:location="/WEB-INF/jdbc.properties" />
+
+<bean id="dataSource"
+    class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+    p:driverClassName="${jdbc.driverClassName}"
+    p:url="${jdbc.url}"
+    p:username="${jdbc.username}"
+    p:password="${jdbc.password}" /-->
+
+    <!-- ADD PERSISTENCE SUPPORT HERE (jpa, hibernate, etc) -->
+
+</beans>

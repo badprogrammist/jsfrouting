@@ -14,13 +14,13 @@ import java.util.Map;
 import java.util.UUID;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Named;
+import org.springframework.stereotype.Service;
 
 /**
  * @organization ITS360
  * @author Ildar Gafarov badprogrammist@gmail.com
  */
-@Named
+@Service
 @ApplicationScoped
 public class NewsService implements CRUDService<News>,Serializable {
     

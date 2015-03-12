@@ -8,11 +8,11 @@ package ru.its360.incareer.web.page;
 
 import java.io.Serializable;
 import java.util.UUID;
-import javax.enterprise.context.Conversation;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
+import org.apache.myfaces.orchestra.conversation.Conversation;
 import ru.its360.incareer.model.news.CRUDService;
 
 /**
@@ -25,7 +25,9 @@ public abstract class AbstractController<E> implements Serializable {
     private String id;
     
     protected abstract CRUDService<E> getService();
-    protected abstract Conversation getConversation();
+    protected Conversation getConversation() {
+        return Conversation.getCurrentInstance();
+    }
     
     public void validateIdParameter(FacesContext context, UIComponent component, Object value) {
         if(value != null) {
@@ -38,16 +40,10 @@ public abstract class AbstractController<E> implements Serializable {
         }
     }
     
-    public void beginConversation() {
-        if (getConversation().isTransient()) {
-            getConversation().begin();
-        }
-    }
+    
 
     public void endConversation() {
-        if (!getConversation().isTransient()) {
-            getConversation().end();
-        }
+        getConversation().invalidate();
     }
     
     public E getCurrent() {

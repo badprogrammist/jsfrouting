@@ -1,33 +1,28 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/decorators/application.xhtml">
 
-    <h:head>
-        <title>
-            <ui:insert name="title">
-                Default page title
-            </ui:insert>
-        </title>
-    </h:head>
-    <h:body>
-        <ui:insert name="header">
-            <h:form>
-                <h:link outcome="#{news.gotoRoot()}" value="Новости"/>
-            </h:form>
-        </ui:insert>
-        <hr/>
-        <ui:insert name="content">
-            <p>Default content</p>
-        </ui:insert>
-        <hr/>
-        <ui:insert name="application_footer">
-            <p>Default application footer content</p>
-        </ui:insert>
-    </h:body>
+
+    <ui:define name="title">
+        Default page title
+    </ui:define>
+
+
+    <ui:define name="header">
+        <h:form>
+            <h:link outcome="#{news.gotoRoot()}" value="Новости"/>
+        </h:form>
+    </ui:define>
+    <ui:define name="content">
+        <p>Default content</p>
+    </ui:define>
+    <ui:define name="footer">
+        <p>Default application footer content</p>
+    </ui:define>
 
 
 
-</html>
+</ui:composition>
 

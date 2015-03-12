@@ -26,7 +26,6 @@ public abstract class AbstractCRUDController<E> extends AbstractController<E> {
     }
     
     public void prepareEdit() {
-        beginConversation();
         initCurrentFromId();
     }
     
@@ -62,7 +61,7 @@ public abstract class AbstractCRUDController<E> extends AbstractController<E> {
         if (getCurrent() != null) {
             getService().save(getCurrent());
             endConversation();
-            return gotoList();
+            return gotoRoot();
         }
         return "";
     }

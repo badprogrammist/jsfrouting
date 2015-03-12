@@ -8,13 +8,13 @@ package ru.its360.incareer.web.page.news;
 import com.ocpsoft.pretty.faces.annotation.URLAction;
 import com.ocpsoft.pretty.faces.annotation.URLMapping;
 import com.ocpsoft.pretty.faces.annotation.URLMappings;
-import javax.enterprise.context.Conversation;
-import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.springframework.context.annotation.Scope;
 import ru.its360.incareer.model.news.CRUDService;
 import ru.its360.incareer.model.news.News;
 import ru.its360.incareer.model.news.NewsService;
+import ru.its360.incareer.model.news.Tag;
 import ru.its360.incareer.web.page.AbstractCRUDController;
 
 /**
@@ -22,7 +22,7 @@ import ru.its360.incareer.web.page.AbstractCRUDController;
  * @author Ильдар
  */
 @Named("news")
-@ConversationScoped
+@Scope("conversation.manual")
 @URLMappings(mappings = {
     @URLMapping(id = "news", pattern = "/news", viewId = "/pages/news/list.xhtml"),
     @URLMapping(id = "new_news",parentId = "news", pattern = "/new", viewId = "/pages/news/create.xhtml"),
@@ -42,24 +42,33 @@ public class NewsController extends AbstractCRUDController<News> {
     @Inject
     private NewsService newsService;
 
-    @Inject
-    private Conversation conversation;
+    private int count = 0;
+    
+    
+    public void incrementCount() {
+        ++count;
+    }
+    
+    
 
     @Override
     protected CRUDService<News> getService() {
         return newsService;
     }
 
-    @Override
-    protected Conversation getConversation() {
-        return conversation;
-    }
 
     @Override
     protected String getURLKey() {
         return "news";
     }
 
+    public void attachTag() {
+        if(getCurrent() != null) {
+            getCurrent().getTags().add(new Tag());
+        }
+    }
+    
+    
     @URLAction(mappingId = "news", onPostback = false)
     @Override
     public void prepareList() {
@@ -82,6 +91,10 @@ public class NewsController extends AbstractCRUDController<News> {
     @Override
     public void prepareEdit() {
         super.prepareEdit();
+    }
+
+    public int getCount() {
+        return count;
     }
 
     

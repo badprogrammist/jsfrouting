@@ -2,12 +2,24 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="/layouts/application.xhtml">
+                template="/layouts/applicationWithBars.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="title">
         Welcome to index
     </ui:define>
-    <ui:define name="content">
-        
+    
+    
+    
+    <ui:define name="app_content">
+        <h:form>
+            <h:outputText id="count_index" value="#{news.count}"/>
+            <h:commandLink value="Increment">
+                <f:ajax listener="#{news.incrementCount()}" render="count_index"/>
+            </h:commandLink>
+        </h:form>
+    </ui:define>
+    <ui:define name="right_bar">
+        right bar
     </ui:define>
 
 </ui:composition>

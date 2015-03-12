@@ -10,6 +10,11 @@
     <cc:implementation>
         <h:outputLabel value="Содержимое" for="content"/>
         <h:inputText id="content" value="#{cc.attrs.newsItem.content}"/>
+        
+        <ui:repeat var="tagItem" value="#{cc.attrs.newsItem.tags}">
+            <h:inputText value="#{tagItem.title}"/>
+        </ui:repeat>
+        
     </cc:implementation>
 
 </ui:composition>

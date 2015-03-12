@@ -10,7 +10,13 @@
     <ui:define name="content">
         <h3>View news</h3>
         <p>#{news.current.content}</p>
-</ui:define>
+        <ul>
+            <ui:repeat var="tagItem" value="#{news.current.tags}">
+                <li><h:outputText value="#{tagItem.title}"/></li>
+            </ui:repeat>
+        </ul>
+
+    </ui:define>
 
 </ui:composition>
 
