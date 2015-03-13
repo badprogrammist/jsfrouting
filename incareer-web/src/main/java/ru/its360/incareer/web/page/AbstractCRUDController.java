@@ -8,14 +8,19 @@ package ru.its360.incareer.web.page;
 
 import java.util.List;
 import java.util.UUID;
+import ru.its360.incareer.model.news.CRUDService;
 
 /**
  * @organization ITS360
  * @author Ildar Gafarov badprogrammist@gmail.com
  */
-public abstract class AbstractCRUDController<E> extends AbstractController<E> {
+public abstract class AbstractCRUDController<E> extends AbstractController {
 
+    private E current;
+    private String id;
+    
     protected abstract String getURLKey();
+    protected abstract CRUDService<E> getService();
     
     public void prepareCreate() {
         setCurrent(getService().createEmptyEntity());
@@ -79,4 +84,21 @@ public abstract class AbstractCRUDController<E> extends AbstractController<E> {
             return false;
         }
     }
+    
+    public E getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(E current) {
+        this.current = current;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+    
 }

@@ -5,16 +5,20 @@
                 template="/layouts/applicationWithBars.xhtml"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="title">
-        Welcome to index
+        Count
     </ui:define>
-    
-    
-    
+
+
+
     <ui:define name="app_content">
-        
+        <h:outputText id="count_index" value="#{count.count}"/>
     </ui:define>
     <ui:define name="right_bar">
-        right bar
+        <h:form>
+            <h:commandLink value="Increment">
+                <f:ajax listener="#{count.incrementCount()}" render="count_index"/>
+            </h:commandLink>
+        </h:form>
     </ui:define>
 
 </ui:composition>
